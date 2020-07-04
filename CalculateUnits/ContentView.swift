@@ -12,7 +12,7 @@ struct ContentView: View {
     
     @State private var InputUnit = ""
     @State private var OutputUnit = ""
-    @State private var inputNumber = 2
+    @State private var inputNumber = ""
     
     let possibleUnits = ["sec","min","hrs"]
     
@@ -26,6 +26,18 @@ struct ContentView: View {
                     ForEach(0 ..< possibleUnits.count){number in
                         Text("\(self.possibleUnits[number])")
                     }
+                }
+                Picker("Convert To", selection: $OutputUnit) {
+                    ForEach(0 ..< possibleUnits.count){number in
+                        Text("\(self.possibleUnits[number])")
+                    }
+                }
+                Section(header: Text("Enter The Number")) {
+                    TextField("Here", text: $inputNumber)
+                        .keyboardType(.decimalPad)
+                }
+                Section(header: Text("Result")) {
+                    Text("")
                 }
             }
         .navigationBarTitle("Unit Converter")
